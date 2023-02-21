@@ -4,14 +4,36 @@ import random
 
 root = Tk()
 
-dict = ['Да', 'Нет', 'Не знаю']
+list = ['Да', 'Нет', 'Не знаю', 'Может быть', 'Возможно',
+        'Абсолютно точно','Даже не думай','Скорее всего нет',
+        'Спроси позже','Никаких сомнений']
 
-def button_1():
-	a = random.choice(dict)
-	messagebox.showinfo('', a)
+def set_value(formula: object) -> object:
+    if formula == '':
+        lbl['text']=''
+    else:
+        lbl['text'] = random.choice(list)
 
-root.title('Приложение')
-root.geometry('500x200')
-Button(text='Рандомный выбор', fg = 'red', activebackground = 'cyan', command = button_1).pack()
+
+def button_1(choice):
+	a = random.choice(list)
+    if choice == a:
+        set_value(lbl[a])
+
+
+root.resizable(False, False)
+
+root.title('Рандомайзер')
+root.geometry('250x250')
+root["bg"] = "black"
+
+x = 70
+y = 140
+
+lbl = Label(font=("Consolas", 21, "bold"), text = random.choice(dict), bg="blue", foreground="white")
+lbl.place(x=55, y=20, width = 150, height = 70)
+
+button = Button(text='Рандомный выбор', fg = 'white', bg = 'black', activebackground = 'blue', command = button_1)
+button.place(x=x, y=y, width=115,  heigh=79)
 
 root.mainloop()
